@@ -1,6 +1,9 @@
 name: Print Environment
 
-on: [release, workflow_dispatch]
+on:
+  workflow_dispatch:
+  release:
+    types: [created, published]
 
 jobs:
   print_environment:
@@ -9,3 +12,6 @@ jobs:
 
     - name: Print Environment
       run: "printenv | sort"
+
+    - name: Print Event
+      run: "cat $GITHUB_EVENT_PATH"
