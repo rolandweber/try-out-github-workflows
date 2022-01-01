@@ -8,7 +8,4 @@ jobs:
     steps:
 
     - name: Print Environment
-      run: printenv
-
-    - name: "Print Environment, Sorted"
       run: "printenv | sort"
