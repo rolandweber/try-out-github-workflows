@@ -1,0 +1,14 @@
+name: Print Environment
+
+on: [release, workflow_dispatch]
+
+jobs:
+  print_environment:
+    runs-on: ubuntu-20.04
+    steps:
+
+    - name: Print Environment
+      run: printenv
+
+    - name: "Print Environment, Sorted"
+      run: "printenv | sort"
