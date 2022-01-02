@@ -3,7 +3,7 @@ name: Print Environment
 on:
   workflow_dispatch:
   release:
-    types: [created, published]
+    types: [published]
 
 jobs:
   print_environment:
