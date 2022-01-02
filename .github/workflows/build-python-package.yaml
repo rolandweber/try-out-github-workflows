@@ -1,7 +1,15 @@
 name: Build Python Package
 
 on:
+  release:
+    types: [published]
+
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number for the package.'
+        required: true
+        default: '0.0.8'
 
 # I've had looks at...
 # https://github.com/jugmac00/will-it-build/blob/main/action.yml
@@ -17,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: ./.github/scripts/inject-version.sh ${{ github.event.inputs.version }}
     - run: python3 -m pip install --upgrade build
     - run: python3 -m build
     - run: ls -AlF dist/
