@@ -1,0 +1,22 @@
+name: Build Python Package
+
+on:
+  workflow_dispatch:
+
+# I've had looks at...
+# https://github.com/jugmac00/will-it-build/blob/main/action.yml
+# https://packaging.python.org/en/latest/tutorials/packaging-projects/#generating-distribution-archives
+# https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#packaging-your-project
+
+# I'm intentionally not using setup-python here,
+# instead relying on the pre-installed python3.
+# https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md
+
+jobs:
+  build_python_package:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: python3 -m pip install --upgrade build
+    - run: python3 -m build
+    - run: ls -AlF dist/
