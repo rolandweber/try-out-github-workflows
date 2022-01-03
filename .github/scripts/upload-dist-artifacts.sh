@@ -45,7 +45,7 @@ for file in dist/* ; do
     fi
 
     # https://docs.github.com/en/rest/reference/releases#upload-a-release-asset
-    curl --fail \
+    curl --fail -sS \
          --header "Accept: application/vnd.github.v3+json" \
          --header "Authorization: Bearer $token" \
          --header "Content-Type: $content_type" \
