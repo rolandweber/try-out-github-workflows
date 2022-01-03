@@ -31,8 +31,8 @@ for file in dist/* ; do
     echo "Uploading $file..."
 
     # URL-encode with jq, see https://stackoverflow.com/a/34407620
-    name=$(jq -rn --arg x "$file" '$x|@uri')
-    label=$(jq -rn --arg x "$file" '$x|@uri')
+    name=$(jq -rn --arg x $(basename $file) '$x|@uri')
+    label=$name
 
     if [[ $file == *.tar.gz ]]; then
         # https://superuser.com/a/960710
