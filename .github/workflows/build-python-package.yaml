@@ -32,6 +32,6 @@ jobs:
     - run: python3 -m build
     - run: ls -AlF dist/
     - run: |
-      if [[ $GITHUB_EVENT_NAME == release ]]; then \
-        ./.github/scripts/upload-dist-artifacts.sh ; \
-      fi
+        if [[ $GITHUB_EVENT_NAME == release ]]; then
+          ./.github/scripts/upload-dist-artifacts.sh
+        fi
