@@ -31,10 +31,8 @@ jobs:
     - run: python3 -m pip install --upgrade build
     - run: python3 -m build
     - run: ls -AlF dist/
-    - name: Provide GITHUB_TOKEN
-      run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >>$GITHUB_ENV
     - name: Upload artifacts to the release
       run: |
         if [[ $GITHUB_EVENT_NAME == release ]]; then
-          ./.github/scripts/upload-dist-artifacts.sh
+          ./.github/scripts/upload-dist-artifacts.sh ${{ secrets.GITHUB_TOKEN }}
         fi

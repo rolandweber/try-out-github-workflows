@@ -3,8 +3,10 @@
 # Upload distribution artifacts to a release.
 set -e
 
-if [[ -z $GITHUB_TOKEN ]]; then
-    >&2 echo "Error: GITHUB_TOKEN is not set."
+token=${1:-$GITHUB_TOKEN}
+
+if [[ -z $token ]]; then
+    >&2 echo "Error: GITHUB_TOKEN not provided as argument or env var."
     exit 1
 fi
 if [[ -z $GITHUB_EVENT_PATH ]]; then
@@ -45,7 +47,7 @@ for file in dist/* ; do
     # https://docs.github.com/en/rest/reference/releases#upload-a-release-asset
     curl --fail \
          --header "Accept: application/vnd.github.v3+json" \
-         --header "Authorization: Bearer $GITHUB_TOKEN" \
+         --header "Authorization: Bearer $token" \
          --header "Content-Type: $content_type" \
          --data-binary "@$file" \
          "$upload_url?name=$name&label=$label"
