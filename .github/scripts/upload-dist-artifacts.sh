@@ -3,11 +3,14 @@
 # Upload distribution artifacts to a release.
 set -e
 
+if [[ -z $GITHUB_TOKEN ]]; then
+    >&2 echo "Error: GITHUB_TOKEN is not set."
+    exit 1
+fi
 if [[ -z $GITHUB_EVENT_PATH ]]; then
     >&2 echo "Error: GITHUB_EVENT_PATH is not set."
     exit 1
 fi
-
 
 upload_url=$( jq -r '.release.upload_url' <"$GITHUB_EVENT_PATH" )
 
