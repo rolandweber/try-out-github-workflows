@@ -14,7 +14,7 @@ on:
 # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md
 
 jobs:
-  build_python_package:
+  build_and_publish:
     runs-on: ubuntu-latest
     permissions:
       contents: write
