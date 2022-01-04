@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
 # Put actual version number into the sources, in place of "0.0.0a0".
+set -e
 
 version=${1:-$GITHUB_REF_NAME}
 
